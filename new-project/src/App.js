@@ -1,4 +1,5 @@
 import './App.css';
+import FirstComponents from './components/FirstComponents'
 
 function App() {
   const name = 'Leonardo';
@@ -16,6 +17,7 @@ function App() {
       <p>Olá, {neeName}</p>
       <p>soma: {sum(2 , 2)}</p>
       <img src={url} alt='Imagem' />
+      <FirstComponents />
     </div>
   );
 }
