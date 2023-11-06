@@ -1,7 +1,9 @@
+import styles from './Phrase.module.css'
+
 function Phrase() {
     return (
-        <div>
-            <p>Um componente com uma farse!</p>
+        <div className={styles.phraseContainer}>
+            <p className={styles.phraseContent}>Um componente com uma farse!</p>
         </div>
     )
 };
