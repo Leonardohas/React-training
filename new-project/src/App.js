@@ -12,7 +12,6 @@ function App() {
     <div className="App">
       <h1>Testando eventos</h1>
       <Event number='1' />
-      <Event number='2' />
       <Form />
     </div>
   );
