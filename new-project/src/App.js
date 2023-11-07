@@ -1,22 +1,27 @@
+import { useState } from 'react'
+
 import './App.css';
-import SayMyName from './components/SayMyName'
-import Person from './components/Person'
-import Phrase from './components/Phrase'
-import List from './components/List'
-import Event from './components/Event'
-import Form from './components/Form'
-import ConditionalRender from './components/ConditionalRender';
-import OtherList from './components/OtherList';
+// import SayMyName from './components/SayMyName'
+// import Person from './components/Person'
+// import Phrase from './components/Phrase'
+// import List from './components/List'
+// import Event from './components/Event'
+// import Form from './components/Form'
+// import ConditionalRender from './components/ConditionalRender';
+// import OtherList from './components/OtherList';
+import YourName from './components/YourName';
+import Salutation from './components/Salutation';
 
 function App() {
 
-  const myItens = ['React', 'Vue', 'Angular'];
+  const [name, setName] = useState();
 
   return (
     <div className="App">
-      <h1>Renderização de listas</h1>
-      <OtherList itens={myItens} />
-      <OtherList itens={[]} />
+      <h1>State Lift</h1>
+      <YourName setName={setName} />
+      <Salutation name={name}/>
+      {name}
     </div>
   );
 }
