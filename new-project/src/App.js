@@ -11,15 +11,19 @@ import Foter from './components/layout/Foter';
 
 function App() {
   return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route exact path="/" element={<Home/>}/>
-        <Route path="/company" element={<Company/>}/>
-        <Route path="/contact" element={<Contact/>}/>
-      </Routes>
-      <Foter />
-    </Router>
+    // TODO Verificar qual é o problema que aconteceu com o pacote react-router-dom 
+    // <Router>
+    //   <NavBar />
+    //   <Routes>
+    //     <Route exact path="/" element={<Home/>}/>
+    //     <Route path="/company" element={<Company/>}/>
+    //     <Route path="/contact" element={<Contact/>}/>
+    //   </Routes>
+    //   <Foter />
+    // </Router>
+    <div className='App'>
+      <h1>React Training</h1>
+    </div>
   );
 }
 
