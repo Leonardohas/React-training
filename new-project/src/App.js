@@ -1,27 +1,28 @@
-import { useState } from 'react'
-
 import './App.css';
-// import SayMyName from './components/SayMyName'
-// import Person from './components/Person'
-// import Phrase from './components/Phrase'
-// import List from './components/List'
-// import Event from './components/Event'
-// import Form from './components/Form'
-// import ConditionalRender from './components/ConditionalRender';
-// import OtherList from './components/OtherList';
-import YourName from './components/YourName';
-import Salutation from './components/Salutation';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './pages/Home'
+import Company from './pages/Company';
+import Contact from './pages/Contact';
+import NavBar from './components/layout/NavBar';
+import Foter from './components/layout/Foter';
+
+
+// Algo errado com os imports, olhar o que aconteeu futuramente
 
 function App() {
-
-  const [name, setName] = useState();
-
   return (
-    <div className="App">
-      <h1>State Lift</h1>
-      <YourName setName={setName} />
-      <Salutation name={name}/>
-      {name}
+    // TODO Verificar qual é o problema que aconteceu com o pacote react-router-dom 
+    // <Router>
+    //   <NavBar />
+    //   <Routes>
+    //     <Route exact path="/" element={<Home/>}/>
+    //     <Route path="/company" element={<Company/>}/>
+    //     <Route path="/contact" element={<Contact/>}/>
+    //   </Routes>
+    //   <Foter />
+    // </Router>
+    <div className='App'>
+      <h1>React Training</h1>
     </div>
   );
 }
