@@ -5,19 +5,19 @@ import styles from './NavBar.module.css'
 
 function NavBar() {
     return (
-        <nav class={styles.navbar}>
+        <nav className={styles.navbar}>
             <Container>
                 <Link to="/">
                     <img src={logo} alt="Costs" />
                 </Link>
-                <ul class={styles.list}>
-                    <li class={styles.item}>
+                <ul className={styles.list}>
+                    <li className={styles.item}>
                         <Link to="/">Home</Link>                        
                     </li>
-                    <li class={styles.item}>
+                    <li className={styles.item}>
                         <Link to="/Company">Company</Link>
                     </li>
-                    <li class={styles.item}>
+                    <li className={styles.item}>
                         <Link to="/Contact">Contact</Link>
                     </li>
                 </ul>
