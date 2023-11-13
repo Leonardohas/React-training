@@ -22,7 +22,7 @@ function NewProject() {
         .then((data) => { // O segundo then fara algo com os dados ou apenas realizara algo que eu queira no sistemas 
             console.log(data) // console.log(data) para ver os dados que estão vindo pelo back end
             // redirect
-            history("/projects", {message: 'project successfully created'})
+            history("/projects", {state:{message: 'project successfully created'}})
         }).catch((error) => console.log(error)) // catch para receber um possivel error que pode acontecer no servidor.
     };
 
