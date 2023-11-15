@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react'
 import Message from "../layout/Message"
 import styles from './Projects.module.css'
 import Container from '../layout/Container'
+import Loading from "../layout/Loading"
 import LinkButton from "../layout/LinkButton"
 import ProjectCard from "../project/ProjectCard"
 
 function Projects() {
     const [projects, setProjects] = useState([]);
+    const [removeLoading, setremoveLoading] = useState(false);
 
     const location = useLocation();
     let message = ''
@@ -16,15 +18,18 @@ function Projects() {
     };
 
     useEffect(() => {
-        fetch('http://localhost:5000/projects', {
-            method: 'GET',
-            headers: {
-               'content-type': 'application/json' 
-            },
-        }).then((resp) => resp.json()).then((data) => {
-            console.log(data);
-            setProjects(data);
-        }).catch((error) => console.log(error))
+        setTimeout(() => { //set timeout apenas para ver o componente de loading em ação!
+            fetch('http://localhost:5000/projects', {
+                method: 'GET',
+                headers: {
+                   'content-type': 'application/json' 
+                },
+            }).then((resp) => resp.json()).then((data) => {
+                console.log(data);
+                setProjects(data);
+                setremoveLoading(true);
+            }).catch((error) => console.log(error))
+        }, 3000)
     }, [])
 
     return (
@@ -43,6 +48,10 @@ function Projects() {
                         category={project.category.name}
                         key={project.id}                        
                     />
+                )}
+                {!removeLoading && <Loading />}
+                {removeLoading && projects.length === 0 && (
+                    <p>There are no registered projects</p>
                 )}
             </Container>
         </div>
