@@ -10,6 +10,7 @@ import ProjectCard from "../project/ProjectCard"
 function Projects() {
     const [projects, setProjects] = useState([]);
     const [removeLoading, setremoveLoading] = useState(false);
+    const [projectMessage, setProjectMessage] = useState("");
 
     const location = useLocation();
     let message = ''
@@ -54,6 +55,7 @@ function Projects() {
             <LinkButton to="/newproject" text='Create project'/>
             </div>
             {message && <Message type="success" messageText={message} />}
+            {projectMessage && <Message type="success" messageText={projectMessage} />}
             <Container customClass="start">
                 {projects.length > 0 && projects.map((project) => 
                     <ProjectCard 
