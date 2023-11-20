@@ -32,6 +32,21 @@ function Projects() {
         }, 3000)
     }, [])
 
+    function removeProject(id) {
+        fetch(`http://localhost:5000/projects/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+        .then(resp => resp.json())
+        .then(() => {
+            setProjects(projects.filter((project) => project.id !== id));
+            setProjectMessage("Project successfully removed");
+        })
+        .catch(error => console.log(error))
+    };
+
     return (
         <div className={styles.projects_container}>
             <div className={styles.titile_container}> 
@@ -46,7 +61,8 @@ function Projects() {
                         projectName={project.name}
                         budget={project.budget}
                         category={project.category.name}
-                        key={project.id}                        
+                        key={project.id}
+                        handleRemove={removeProject}                    
                     />
                 )}
                 {!removeLoading && <Loading />}
