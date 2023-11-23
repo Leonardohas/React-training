@@ -1,9 +1,11 @@
+import { parse, v4 as uuidv4} from 'uuid'
 import styles from './Project.module.css';
 import ProjectForm from '../project/ProjectForm';
 import Loading from '../layout/Loading';
 import Container from '../layout/Container';
 import Message from '../layout/Message';
-import { useParams} from 'react-router-dom';
+import ServiceForm from '../service/ServiceForm'
+import { json, useParams} from 'react-router-dom';
 import { useState, useEffect} from 'react';
 
 function Project() {
@@ -11,6 +13,7 @@ function Project() {
     const {id} = useParams(); 
     const [project, setproject] = useState([]);
     const [showProjectForm, setShowProjectForm] = useState(false);
+    const [showServiceForm, setShowServiceForm] = useState(false);
     const [message, setMessage] = useState();
     const [type, setType] = useState();
 
@@ -31,6 +34,10 @@ function Project() {
 
     function toggleProjectForm() {
         setShowProjectForm(!showProjectForm);
+    };
+    
+    function toggleServiceForm() {
+        setShowServiceForm(!showServiceForm);
     };
 
     function editPost(project) {
@@ -55,6 +62,38 @@ function Project() {
            setType("success");
         })
         .catch((error) => console.log(error))
+    };
+
+    function createService() {
+        setMessage('');
+        const lastService = project.services[project.services.length - 1] // pegar o ultimo servico
+        lastService.id = uuidv4(); // coloca um ID unico para ele.
+        const lastServiceCost = lastService.cost;
+        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost);
+        
+        // validação para ver ser o valor novo ultrapassa o valor do orçamento do projeto
+        if (newCost > parseFloat(project.budget)) {
+            setMessage('Exceeded budget, check service budget');
+            setType('error');
+            project.services.pop();
+            return false;
+        }
+        // adicionar o custo do serviço ao custo total do projeto
+        project.cost = newCost;
+
+        // atualizar projeto
+        fetch(`http://localhost:5000/projects/${project.id}`, {
+            method: 'PATCH', // PATCH pois atualizaremos apenas dados parciais do projeto, ou seja, o que for mandado novamente.
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            // exibir os serviços
+            console.log(data);
+        }).catch((error) => console.log(error))
     };
     
     return(
@@ -90,6 +129,25 @@ function Project() {
                                 </div>
                             )}
                         </div>
+                        <div className={styles.service_form_container}>
+                            <h2>Added a service</h2>
+                            <button className={styles.btn} onClick={toggleServiceForm}>
+                                {!showServiceForm ? 'Add service' : 'Close'}
+                            </button>
+                            <div className={styles.project_info}>
+                                {showServiceForm && 
+                                    <ServiceForm
+                                        handleSubmit={createService}
+                                        buttonText="Add service"
+                                        projectData={project}
+                                    />
+                                }
+                            </div>
+                        </div>
+                        <h2>Services</h2>
+                        <Container customClass="start">
+                            <p>Servive Itens</p>
+                        </Container>   
                     </Container>
                 </div>
             ): (<Loading />)}
