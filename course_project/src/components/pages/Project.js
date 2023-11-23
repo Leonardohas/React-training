@@ -4,14 +4,16 @@ import ProjectForm from '../project/ProjectForm';
 import Loading from '../layout/Loading';
 import Container from '../layout/Container';
 import Message from '../layout/Message';
+import ServiceCard from '../service/ServiceCard'
 import ServiceForm from '../service/ServiceForm'
-import { json, useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect} from 'react';
 
 function Project() {
 
     const {id} = useParams(); 
-    const [project, setproject] = useState([]);
+    const [project, setproject] = useState([]); // começa com um array vazio
+    const [services, setServices] = useState([]); // começa com um array vazio
     const [showProjectForm, setShowProjectForm] = useState(false);
     const [showServiceForm, setShowServiceForm] = useState(false);
     const [message, setMessage] = useState();
@@ -27,6 +29,7 @@ function Project() {
         }).then(resp => resp.json()) // Pegamos a resposta e a transformamos em JSON 
         .then((data) => { // pegamos esse dado e utilizamos para algum fim 
             setproject(data);
+            setServices(data.services)
         }) 
         .catch(error => console.log(error))
         }, 2000) // loading para simulação do projeto.
@@ -92,8 +95,12 @@ function Project() {
         .then((resp) => resp.json())
         .then((data) => {
             // exibir os serviços
-            console.log(data);
+            setShowServiceForm(false);
         }).catch((error) => console.log(error))
+    };
+
+    function removeService() {
+
     };
     
     return(
@@ -146,7 +153,19 @@ function Project() {
                         </div>
                         <h2>Services</h2>
                         <Container customClass="start">
-                            <p>Servive Itens</p>
+                            {services.length > 0 &&
+                                services.map((service) => (
+                                    <ServiceCard 
+                                        id={service.id}
+                                        name={service.name}
+                                        cost={service.cost}
+                                        description={service.description}
+                                        key={service.key}
+                                        handleRemove={removeService}
+                                    />
+                                ))
+                            }
+                            {services.length === 0 && <p>There are no registered services</p>}
                         </Container>   
                     </Container>
                 </div>
