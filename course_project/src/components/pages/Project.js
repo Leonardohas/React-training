@@ -99,8 +99,25 @@ function Project() {
         }).catch((error) => console.log(error))
     };
 
-    function removeService() {
-
+    function removeService(id, cost) {
+        // Na linha abaixo, Pega cada um dos serviços e vamos tirar o serviço que tem o ID igual ao que vamos passar pelo argumento, então ficara apenas os serviços que não tem o ID igual ao ID do removido
+        const serviceUpdate = project.services.filter((service) => service.id !== id);
+        const projectUpdate = project;
+        projectUpdate.services = serviceUpdate;
+        projectUpdate.cost = parseFloat(projectUpdate.cost) - parseFloat(cost);
+        fetch(`http://localhost:5000/projects/${projectUpdate.id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(projectUpdate)
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setproject(projectUpdate)
+            setServices(serviceUpdate)
+            setMessage('Service successfully removed!!')
+        }).catch((error) => console.log(error))
     };
     
     return(
