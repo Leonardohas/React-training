@@ -10,7 +10,7 @@ import Foter from './components/layout/Foter';
 function App() {
   return (
     <div className='App'>
-      <Foter />
+      <Home />
     </div>
   );
 }
