@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function MuiButton({variant, buttonText, primaryColor}) {
+function MuiButton({buttonText, primaryColor, handleclick}) {
 
     const theme = createTheme({
         palette: {
@@ -20,7 +20,7 @@ function MuiButton({variant, buttonText, primaryColor}) {
     return (
         <ThemeProvider theme={theme}>
             <Stack spacing={2} direction="row" justifyContent="center">
-                <Button variant={variant} color="colors" onClick={test}>{buttonText}</Button>
+                <Button variant='contained' color="colors" onClick={handleclick}>{buttonText}</Button>
             </Stack>
         </ThemeProvider>
     )
