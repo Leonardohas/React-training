@@ -1,4 +1,5 @@
 import './App.css';
+import Hooks from './components/Hooks';
 // import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 // import Home from './pages/Home'
 // import Company from './pages/Company';
@@ -11,7 +12,7 @@ function App() {
   const buttonText = 'Material UI button'
   return (
     <div className='App'>
-      <MuiButton variant='contained' buttonText={buttonText} primaryColor='#FF33FF'/>
+      <Hooks />
     </div>
   );
 }
