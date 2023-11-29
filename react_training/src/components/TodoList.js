@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { BsTrash, BsBookmarkCheck, BsBookmarkCheckFill } from 'react-icons/bs'
 import styles from './TodoList.module.css'
+import TextField from './eventsComponents/TextField';
 
 const API = "http://localhost:5000";
 
@@ -48,6 +49,14 @@ function TodoList() {
         setTitle("");
         setTime("");
         
+    };
+
+    function handleChangeTitle(event) {
+        setTitle(event.target.value)
+    };
+
+    function handleChangeTime(event) {
+        setTime(event.target.value)
     };
 
     const handleDelete = async (id) => {
