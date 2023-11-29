@@ -1,14 +1,30 @@
+/* html { 
+  background: linear-gradient(
+    195deg,
+    rgba(98, 188, 240, 1) 0%
+    rgba(78, 166, 200, 1) 98%
+  );
+  VER POR QUE NÃO FUNCIONOU
+} */
+
 body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica;
+  background-color: bisque;
+}
+
+/* body {
   padding: 50px;
   padding-bottom: 500px;
   background-color: #efefef;
-}
+} */
 
- h1 {
+ /* h1 {
   color: #333
 }
 
 p {
   background-color: #999;
   padding: 10px;
-}
+} */
