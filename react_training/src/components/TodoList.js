@@ -85,24 +85,22 @@ function TodoList() {
                 <form onSubmit={handleSubmit}>
                     <div className={styles.form_control}>
                         <label htmlFor='title'>What will you do?</label>
-                        <input 
-                            type='text'
-                            name='title'
-                            placeholder='Task title'
-                            onChange={(event) => setTitle(event.target.value)}
-                            value={title || ""}
-                            required
+                        <TextField                         
+                            name="title"
+                            placeholder="Task title"
+                            handleOnChange={handleChangeTitle}
+                            value={title}
+                            
                         />
                     </div>
                     <div className={styles.form_control}>
                         <label htmlFor='time'>Duration:</label>
-                        <input 
-                            type='text'
-                            name='time'
-                            placeholder='Estimated time (in hours)'
-                            onChange={(event) => setTime(event.target.value)}
-                            value={time || ""}
-                            required
+                        <TextField               
+                            name="time"
+                            placeholder="Estimated time (in hours)"
+                            handleOnChange={handleChangeTime}
+                            value={time}
+                            
                         />
                     </div>
                     <input type='submit' value='Create task' />

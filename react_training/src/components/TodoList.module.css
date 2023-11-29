@@ -59,6 +59,12 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+input[type="submit"]:hover {
+    background-color: #ffbb33;
+    color: #222;
+    transition: .5s;
+}
+
 .list_todo {
     padding: 1em 2em; 
 }
