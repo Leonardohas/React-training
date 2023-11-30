@@ -85,7 +85,7 @@ input[type="submit"]:hover {
 
 .todo_done {
     text-decoration: line-through;
-    color: rgb(240, 98, 146);
+    color: #ffbb33;
 }
 
 .todo p {
@@ -103,5 +103,5 @@ input[type="submit"]:hover {
 }
 
 .todo svg:hover {
-    color: rgb(240, 98, 146);
+    color: #ffbb33;
 }
